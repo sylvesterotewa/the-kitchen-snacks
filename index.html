@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Kitchen Snacks - Order delicious Kenyan meals and snacks on WhatsApp.">
+  <title>The Kitchen Snacks</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,700;9..144,800&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#20201c; --tomato:#d83c25; --cream:#fff5df; --mustard:#ffc93c; --muted:#615a4f; }
+    html { scroll-behavior:smooth; }
+    body { font-family:"DM Sans",sans-serif; color:var(--ink); }
+    .display-font { font-family:"Fraunces",serif; }
+    .hero-grain {
+      background-image:
+        radial-gradient(circle at 14% 22%,rgba(255,201,60,.28) 0 7%,transparent 7.3%),
+        radial-gradient(circle at 85% 76%,rgba(255,245,223,.12) 0 9%,transparent 9.3%);
+    }
+    .menu-card { transition:transform .22s ease,box-shadow .22s ease; }
+    .menu-card:hover { transform:translateY(-5px) rotate(-.25deg); box-shadow:0 18px 34px rgba(41,25,10,.15); }
+    .add-button { transition:transform .18s ease,filter .18s ease; }
+    .add-button:hover { transform:translateY(-2px); filter:brightness(.96); }
+    .add-button:active { transform:translateY(0); }
+    .cart-panel { box-shadow:0 18px 50px rgba(47,31,12,.18); }
+    .reveal { animation:reveal .6s both; }
+    @keyframes reveal { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    .focus-ring:focus-visible { outline:3px solid var(--mustard); outline-offset:3px; }
+  </style>
+</head>
+<body class="w-full min-h-screen bg-[#fff5df]">
+
+<header class="w-full bg-[#20201c] text-white border-b-4 border-[#ffc93c]">
+  <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between gap-4">
+    <a href="#top" class="flex items-center gap-3 focus-ring rounded-lg">
+      <span class="w-10 h-10 rounded-full bg-[#d83c25] grid place-items-center text-[#fff5df] font-black text-xl">K</span>
+      <span class="display-font font-bold tracking-tight">The Kitchen Snacks</span>
+    </a>
+    <nav aria-label="Primary navigation" class="hidden sm:flex items-center gap-6 text-sm font-bold text-[#fff5df]">
+      <a class="hover:text-[#ffc93c] transition-colors focus-ring rounded" href="#menu">Menu</a>
+      <a class="hover:text-[#ffc93c] transition-colors focus-ring rounded" href="#your-order">Your Order</a>
+    </nav>
+    <a href="#your-order" class="focus-ring rounded-full bg-[#ffc93c] text-[#20201c] px-4 py-2 flex items-center gap-2 font-bold text-sm">
+      <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+      Order <span id="header-count">0</span>
+    </a>
+  </div>
+</header>
+
+<main id="top" class="w-full">
+  <section class="hero-grain w-full bg-[#d83c25] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-5 py-10 md:py-16 grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal">
+        <p class="inline-block rounded-full bg-[#ffc93c] text-[#20201c] px-4 py-2 font-extrabold uppercase tracking-wider text-sm">Fresh • Tasty • Affordable</p>
+        <h1 class="display-font mt-5 font-extrabold leading-[.95] text-[#fff5df] text-5xl md:text-7xl">Good food.<br>Good mood.</h1>
+        <p class="mt-5 max-w-xl text-[#fff5df] text-lg leading-relaxed">Delicious everyday meals and snacks, made for you. Choose your favourites and send your order straight to us on WhatsApp.</p>
+        <a href="#menu" class="focus-ring inline-flex mt-7 bg-[#20201c] text-[#fff5df] rounded-full px-6 py-3 font-bold items-center gap-2 hover:bg-[#3c3c34]">
+          <i data-lucide="utensils" class="w-4 h-4"></i> View Menu
+        </a>
+      </div>
+      <div class="reveal relative" style="animation-delay:.13s">
+        <div class="absolute -inset-3 bg-[#ffc93c] rotate-3 rounded-[2rem]"></div>
+        <div class="relative w-full aspect-[4/3] rounded-[1.7rem] shadow-2xl bg-[#fff5df] grid place-items-center overflow-hidden">
+          <div class="text-center p-8">
+            <div class="text-7xl mb-4">🍗🍟</div>
+            <div class="display-font text-4xl font-extrabold text-[#d83c25]">The Kitchen Snacks</div>
+            <p class="mt-3 font-bold text-[#20201c]">Fresh food. Great prices.</p>
+          </div>
+        </div>
+        <div class="absolute -bottom-4 -left-3 bg-[#fff5df] rounded-xl px-4 py-3 shadow-lg rotate-[-4deg]">
+          <p class="font-extrabold text-[#d83c25]">Order on WhatsApp 📲</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="w-full bg-[#fff5df] py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="flex flex-col sm:flex-row justify-between sm:items-end gap-3 mb-8">
+        <div>
+          <p class="text-[#d83c25] uppercase tracking-[.18em] font-extrabold text-sm">Our menu</p>
+          <h2 class="display-font font-extrabold mt-2 text-[#20201c] text-4xl">Pick your favourites</h2>
+        </div>
+        <p class="text-[#615a4f] max-w-sm sm:text-right">Tap “Add to Order”, then send your order to us on WhatsApp.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <article class="menu-card bg-white rounded-2xl p-5 border border-[#eadcc3]">
+          <h3 class="font-extrabold">Chicken &amp; Chips</h3>
+          <p class="text-[#615a4f] mt-2">Crispy chicken served with tasty chips.</p>
+          <span class="inline-block mt-3 bg-[#ffc93c] rounded-full px-3 py-1 font-extrabold">KES 350</span>
+          <button type="button" data-menu-item="Chicken & Chips" data-menu-price="350" class="add-button focus-ring mt-5 w-full rounded-xl bg-[#d83c25] text-white py-3 font-bold flex items-center justify-center gap-2"><i data-lucide="plus" class="w-4 h-4"></i>Add to Order</button>
+        </article>
+
+        <article class="menu-card bg-white rounded-2xl p-5 border border-[#eadcc3]">
+          <h3 class="font-extrabold">Chips</h3>
+          <p class="text-[#615a4f] mt-2">Golden, crispy chips.</p>
+          <span class="inline-block mt-3 bg-[#ffc93c] rounded-full px-3 py-1 font-extrabold">KES 120</span>
+          <button type="button" data-menu-item="Chips" data-menu-price="120" class="add-button focus-ring mt-5 w-full rounded-xl bg-[#d83c25] text-white py-3 font-bold flex items-center justify-center gap-2"><i data-lucide="plus" class="w-4 h-4"></i>Add to Order</button>
+        </article>
+
+        <article class="menu-card bg-white rounded-2xl p-5 border border-[#eadcc3]">
+          <h3 class="font-extrabold">Kebab</h3>
+          <p class="text-[#615a4f] mt-2">Tasty grilled kebab for a quick bite.</p>
+          <span class="inline-block mt-3 bg-[#ffc93c] rounded-full px-3 py-1 font-extrabold">KES 60</span>
+          <button type="button" data-menu-item="Kebab" data-menu-price="60" class="add-button focus-ring mt-5 w-full rounded-xl bg-[#d83c25] text-white py-3 font-bold flex items-center justify-center gap-2"><i data-lucide="plus" class="w-4 h-4"></i>Add to Order</button>
+        </article>
+
+        <article class="menu-card bg-white rounded-2xl p-5 border border-[#eadcc3]">
+          <h3 class="font-extrabold">Samosa</h3>
+          <p class="text-[#615a4f] mt-2">Crispy samosa with a delicious filling.</p>
+          <span class="inline-block mt-3 bg-[#ffc93c] rounded-full px-3 py-1 font-extrabold">KES 40</span>
+          <button type="button" data-menu-item="Samosa" data-menu-price="40" class="add-button focus-ring mt-5 w-full rounded-xl bg-[#d83c25] text-white py-3 font-bold flex items-center justify-center gap-2"><i data-lucide="plus" class="w-4 h-4"></i>Add to Order</button>
+        </article>
+
+        <article class="menu-card bg-white rounded-2xl p-5 border border-[#eadcc3]">
+          <h3 class="font-extrabold">Pilau</h3>
+          <p class="text-[#615a4f] mt-2">Fragrant, spiced Kenyan-style pilau.</p>
+          <span class="inline-block mt-3 bg-[#ffc93c] rounded-full px-3 py-1 font-extrabold">KES 220</span>
+          <button type="button" data-menu-item="Pilau" data-menu-price="220" class="add-button focus-ring mt-5 w-full rounded-xl bg-[#d83c25] text-white py-3 font-bold flex items-center justify-center gap-2"><i data-lucide="plus" class="w-4 h-4"></i>Add to Order</button>
+        </article>
+
+        <article class="menu-card bg-white rounded-2xl p-5 border border-[#eadcc3]">
+          <h3 class="font-extrabold">White Rice</h3>
+          <p class="text-[#615a4f] mt-2">Simple, fluffy white rice.</p>
+          <span class="inline-block mt-3 bg-[#ffc93c] rounded-full px-3 py-1 font-extrabold">KES 100</span>
+          <button type="button" data-menu-item="White Rice" data-menu-price="100" class="add-button focus-ring mt-5 w-full rounded-xl bg-[#d83c25] text-white py-3 font-bold flex items-center justify-center gap-2"><i data-lucide="plus" class="w-4 h-4"></i>Add to Order</button>
+        </article>
+
+        <article class="menu-card bg-white rounded-2xl p-5 border border-[#eadcc3]">
+          <h3 class="font-extrabold">Beef Stew</h3>
+          <p class="text-[#615a4f] mt-2">Tender beef in a rich, tasty stew.</p>
+          <span class="inline-block mt-3 bg-[#ffc93c] rounded-full px-3 py-1 font-extrabold">KES 150</span>
+          <button type="button" data-menu-item="Beef Stew" data-menu-price="150" class="add-button focus-ring mt-5 w-full rounded-xl bg-[#d83c25] text-white py-3 font-bold flex items-center justify-center gap-2"><i data-lucide="plus" class="w-4 h-4"></i>Add to Order</button>
+        </article>
+
+        <article class="menu-card bg-white rounded-2xl p-5 border border-[#eadcc3]">
+          <h3 class="font-extrabold">Kamande</h3>
+          <p class="text-[#615a4f] mt-2">A hearty, tasty bean dish.</p>
+          <span class="inline-block mt-3 bg-[#ffc93c] rounded-full px-3 py-1 font-extrabold">KES 60</span>
+          <button type="button" data-menu-item="Kamande" data-menu-price="60" class="add-button focus-ring mt-5 w-full rounded-xl bg-[#d83c25] text-white py-3 font-bold flex items-center justify-center gap-2"><i data-lucide="plus" class="w-4 h-4"></i>Add to Order</button>
+        </article>
+
+        <article class="menu-card bg-white rounded-2xl p-5 border border-[#eadcc3]">
+          <h3 class="font-extrabold">Sausage</h3>
+          <p class="text-[#615a4f] mt-2">Juicy sausage, perfect as a snack.</p>
+          <span class="inline-block mt-3 bg-[#ffc93c] rounded-full px-3 py-1 font-extrabold">KES 60</span>
+          <button type="button" data-menu-item="Sausage" data-menu-price="60" class="add-button focus-ring mt-5 w-full rounded-xl bg-[#d83c25] text-white py-3 font-bold flex items-center justify-center gap-2"><i data-lucide="plus" class="w-4 h-4"></i>Add to Order</button>
+        </article>
+
+        <article class="menu-card bg-white rounded-2xl p-5 border border-[#eadcc3]">
+          <h3 class="font-extrabold">Smokie</h3>
+          <p class="text-[#615a4f] mt-2">A classic tasty smokie.</p>
+          <span class="inline-block mt-3 bg-[#ffc93c] rounded-full px-3 py-1 font-extrabold">KES 50</span>
+          <button type="button" data-menu-item="Smokie" data-menu-price="50" class="add-button focus-ring mt-5 w-full rounded-xl bg-[#d83c25] text-white py-3 font-bold flex items-center justify-center gap-2"><i data-lucide="plus" class="w-4 h-4"></i>Add to Order</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="your-order" class="w-full bg-[#20201c] py-12 md:py-16">
+    <div class="max-w-5xl mx-auto px-5 grid lg:grid-cols-[1fr_1.1fr] gap-8 items-start">
+      <div class="text-[#fff5df]">
+        <p class="text-[#ffc93c] uppercase tracking-[.18em] font-extrabold text-sm">Your order</p>
+        <h2 class="display-font mt-2 font-extrabold text-4xl">Ready to eat?</h2>
+        <p class="mt-4 leading-relaxed text-[#ded5c6] max-w-md">Review your basket, add your details, and send the order directly to The Kitchen Snacks on WhatsApp.</p>
+        <div class="mt-7 border-l-4 border-[#ffc93c] bg-[#2c2c25] p-4 rounded-r-xl flex gap-3">
+          <i data-lucide="clock-3" class="w-5 h-5 text-[#ffc93c] shrink-0"></i>
+          <p class="text-[#fff5df]">We’ll receive your WhatsApp order and contact you to confirm it.</p>
+        </div>
+      </div>
+
+      <aside class="cart-panel bg-[#fff5df] rounded-3xl p-5 sm:p-7">
+        <div class="flex items-center justify-between gap-4 border-b border-[#e2d4bc] pb-4">
+          <h2 class="display-font font-extrabold text-[#20201c] text-2xl">Your Basket</h2>
+          <span id="cart-count" class="bg-[#d83c25] text-white font-extrabold rounded-full min-w-7 h-7 grid place-items-center px-2">0</span>
+        </div>
+
+        <p id="empty-cart" class="py-7 text-center text-[#746a5c]">Your basket is empty. Add something delicious!</p>
+        <div id="cart-items" class="divide-y divide-[#e2d4bc]"></div>
+
+        <div class="flex justify-between items-center mt-5 pt-4 border-t-2 border-[#20201c]">
+          <span class="font-extrabold text-[#20201c]">Total</span>
+          <output id="order-total" class="font-extrabold text-2xl text-[#d83c25]">KES 0</output>
+        </div>
+
+        <form id="order-form" class="mt-6 space-y-4" novalidate>
+          <div>
+            <label class="block font-bold text-[#20201c] mb-1" for="customer-name">Your name</label>
+            <input id="customer-name" type="text" autocomplete="name" class="focus-ring w-full rounded-xl border border-[#cfc0a6] bg-white px-4 py-3" placeholder="e.g. John" required>
+          </div>
+
+          <div>
+            <label class="block font-bold text-[#20201c] mb-1" for="phone-number">Your phone number</label>
+            <input id="phone-number" type="tel" autocomplete="tel" class="focus-ring w-full rounded-xl border border-[#cfc0a6] bg-white px-4 py-3" placeholder="e.g. 0712 345 678" required>
+          </div>
+
+          <div>
+            <label class="block font-bold text-[#20201c] mb-1" for="order-notes">Delivery / order notes</label>
+            <textarea id="order-notes" rows="3" class="focus-ring w-full rounded-xl border border-[#cfc0a6] bg-white px-4 py-3 resize-y" placeholder="Location, delivery instructions, etc."></textarea>
+          </div>
+
+          <button id="submit-order" type="submit" class="focus-ring w-full rounded-xl bg-[#d83c25] text-white py-4 font-extrabold hover:bg-[#bd2c1a] flex items-center justify-center gap-2">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+            Order on WhatsApp
+          </button>
+          <p id="form-status" class="min-h-6 text-center font-semibold" aria-live="polite"></p>
+        </form>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer class="w-full bg-[#ffc93c]">
+  <div class="max-w-7xl mx-auto px-5 py-5 text-center">
+    <p class="font-bold text-[#20201c]">© 2026 The Kitchen Snacks • Fresh food, great prices.</p>
+  </div>
+</footer>
+
+<template id="cart-item-template">
+  <div class="cart-item py-4 flex justify-between gap-3" data-cart-key="">
+    <div>
+      <p class="cart-item-name font-bold text-[#20201c]"></p>
+      <p class="cart-item-price text-sm text-[#746a5c]"></p>
+    </div>
+    <div class="flex items-center gap-2">
+      <button type="button" class="quantity-minus focus-ring w-8 h-8 rounded-full border border-[#bcae96] font-bold" aria-label="Decrease quantity">−</button>
+      <span class="cart-item-quantity font-bold w-5 text-center"></span>
+      <button type="button" class="quantity-plus focus-ring w-8 h-8 rounded-full bg-[#20201c] text-white font-bold" aria-label="Increase quantity">+</button>
+    </div>
+  </div>
+</template>
+
+<script>
+  const WHATSAPP_NUMBER = "254703141028";
+  const cart = new Map();
+  const currency = new Intl.NumberFormat("en-KE", {
+    style: "currency",
+    currency: "KES",
+    minimumFractionDigits: 0
+  });
+
+  function formatMoney(amount) {
+    return currency.format(amount);
+  }
+
+  function totalItems() {
+    return [...cart.values()].reduce((sum, item) => sum + item.quantity, 0);
+  }
+
+  function orderTotal() {
+    return [...cart.values()].reduce((sum, item) => sum + item.price * item.quantity, 0);
+  }
+
+  function updateCart() {
+    const list = document.getElementById("cart-items");
+    const empty = document.getElementById("empty-cart");
+    const existing = new Map([...list.children].map(el => [el.dataset.cartKey, el]));
+
+    cart.forEach((item, key) => {
+      let row = existing.get(key);
+
+      if (!row) {
+        const fragment = document.getElementById("cart-item-template").content.cloneNode(true);
+        row = fragment.querySelector(".cart-item");
+        row.dataset.cartKey = key;
+
+        row.querySelector(".quantity-minus").addEventListener("click", () => changeQuantity(key, -1));
+        row.querySelector(".quantity-plus").addEventListener("click", () => changeQuantity(key, 1));
+
+        list.appendChild(fragment);
+        row = [...list.children].find(el => el.dataset.cartKey === key);
+      }
+
+      row.querySelector(".cart-item-name").textContent = item.name;
+      row.querySelector(".cart-item-price").textContent = formatMoney(item.price) + " each";
+      row.querySelector(".cart-item-quantity").textContent = item.quantity;
+      existing.delete(key);
+    });
+
+    existing.forEach(row => row.remove());
+
+    const count = totalItems();
+    empty.classList.toggle("hidden", count > 0);
+    document.getElementById("cart-count").textContent = count;
+    document.getElementById("header-count").textContent = count;
+    document.getElementById("order-total").textContent = formatMoney(orderTotal());
+  }
+
+  function changeQuantity(key, amount) {
+    const item = cart.get(key);
+    if (!item) return;
+
+    item.quantity += amount;
+    if (item.quantity <= 0) cart.delete(key);
+    updateCart();
+  }
+
+  function setStatus(message, colour = "") {
+    const status = document.getElementById("form-status");
+    status.textContent = message;
+    status.style.color = colour;
+  }
+
+  document.querySelectorAll("[data-menu-item]").forEach(button => {
+    button.addEventListener("click", () => {
+      const name = button.dataset.menuItem;
+      const price = Number(button.dataset.menuPrice);
+      const current = cart.get(name);
+
+      if (current) {
+        current.quantity += 1;
+      } else {
+        cart.set(name, { name, price, quantity: 1 });
+      }
+
+      updateCart();
+      setStatus("");
+      document.getElementById("your-order").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  document.getElementById("order-form").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const name = document.getElementById("customer-name").value.trim();
+    const phone = document.getElementById("phone-number").value.trim();
+    const notes = document.getElementById("order-notes").value.trim();
+
+    if (!cart.size) {
+      return setStatus("Add at least one item before placing your order.", "#b42318");
+    }
+
+    if (!name || !phone) {
+      return setStatus("Please add your name and phone number to continue.", "#b42318");
+    }
+
+    const items = [...cart.values()]
+      .map(item => `${item.quantity} × ${item.name} — ${formatMoney(item.price * item.quantity)}`)
+      .join("\n");
+
+    const message =
+`🍗 *THE KITCHEN SNACKS — NEW ORDER*
+
+*Customer:* ${name}
+*Phone:* ${phone}
+
+*Order:*
+${items}
+
+*TOTAL: ${formatMoney(orderTotal())}*
+
+*Notes / Location:*
+${notes || "No special notes"}
+
+Please confirm my order.`;
+
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+    setStatus("Your order is ready in WhatsApp. Tap Send to place it.", "#18794e");
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    lucide.createIcons();
+    updateCart();
+  });
+</script>
+</body>
+</html>
